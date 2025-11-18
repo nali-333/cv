@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Test Projet – Barres de Compétences</title>
+
+  <!-- CSS -->
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 40px;
+      background: #f7f7f7;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    .skill {
+      margin-bottom: 20px;
+    }
+
+    .skill span {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .bar {
+      background: #e0e0e0;
+      height: 12px;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .fill {
+      height: 100%;
+      width: 0%;
+      background: #3c82f6;
+      border-radius: 6px;
+    }
+  </style>
+
+  <!-- Anime.js CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+
+</head>
+<body>
+
+  <h1>Test – Barres de Compétences Animées</h1>
+
+  <div class="skill">
+    <span>Travail d'équipe</span>
+    <div class="bar"><div class="fill" data-skill="85"></div></div>
+  </div>
+
+  <div class="skill">
+    <span>Autonomie</span>
+    <div class="bar"><div class="fill" data-skill="80"></div></div>
+  </div>
+
+  <div class="skill">
+    <span>Persévérance</span>
+    <div class="bar"><div class="fill" data-skill="90"></div></div>
+  </div>
+
+  <div class="skill">
+    <span>Esprit critique</span>
+    <div class="bar"><div class="fill" data-skill="75"></div></div>
+  </div>
+
+  <div class="skill">
+    <span>Culture numérique & médias</span>
+    <div class="bar"><div class="fill" data-skill="70"></div></div>
+  </div>
+
+  <!-- JS -->
+  <script>
+    const fills = document.querySelectorAll('.fill');
+
+    fills.forEach(fill => {
+      anime({
+        targets: fill,
+        width: fill.getAttribute('data-skill') + '%',
+        easing: 'easeInOutQuad',
+        duration: 2000
+      });
+    });
+  </script>
+
+</body>
+</html>
