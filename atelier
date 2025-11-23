@@ -200,17 +200,19 @@
                 <li>Anglais : Opérationnel</li>
             </ul>
             <div style="margin-top: 15px;">
-                **CERTIFICATION VOLTAIRE** (Orthographe niveau technique)
+                CERTIFICATION VOLTAIRE (Orthographe niveau technique)
             </div>
         </div>
 
         <div class="item" style="width: 100%; margin-top: 30px;">
-            <div class="section-header">Compétences Techniques</div>
+            <div class="section-header">Compétences Clés</div>
             <ul class="tools-list">
-                <li>**Bureautique :** Suite Office (Excel, PowerPoint, Word)</li>
-                <li>**Création graphique :** Maîtrise des concepts de base (Photoshop, InDesign - *À adapter selon votre maîtrise*)</li>
-                <li>**Gestion de Contenu :** CMS, Réseaux Sociaux Professionnels (veille)</li>
-                <li>**Digital :** Bases HTML/CSS, Outils de reporting</li>
+                <li>Capacités rédactionnelles</li>
+                <li>Gestion de projet</li>
+                <li>Bureautique : Suite Office (Excel, PowerPoint, Word)</li>
+                <li>Création graphique : Maîtrise des concepts de base (Photoshop, InDesign - À adapter selon votre maîtrise)</li>
+                <li>Gestion de Contenu : CMS, Réseaux Sociaux Professionnels (veille)</li>
+                <li>Digital : Bases HTML/CSS, Outils de reporting</li>
             </ul>
         </div>
 
@@ -229,12 +231,12 @@
         
         <div class="section-header">Profil & Atouts Clés</div>
         <p class="profile-summary">
-            Étudiant en Master (M1) en Humanités Numériques, je combine une solide base théorique en **Information et Communication** (Licence) avec une expertise des **enjeux numériques et technologiques**. Je recherche un environnement d'excellence pour mettre ma rigueur, ma capacité de coordination logistique et mon engagement au service de la Direction Communication et Presse des Maisons d'art.
+            Étudiant en Master M1 en Humanités Numériques, je combine une solide base théorique en Information et Communication Licence avec une expertise des enjeux numériques et technologiques. Je recherche un environnement d'excellence pour mettre ma rigueur, ma capacité de coordination logistique et mon engagement au service de la Direction Communication et Presse des Maisons d'art.
         </p>
         
         <div class="atouts">
             <p>
-                Ma Licence en Info-Com a développé un **esprit critique aiguisé** et un **intérêt constant pour les médias**, nourri par une **veille quotidienne** sur les tendances et les stratégies de communication innovantes. Je suis à la fois **créatif** et capable d'une **grande discrétion**, essentielle dans un environnement de Maison de luxe. Mes expériences associatives et de coaching m'ont habitué au **travail en équipe** et à la **gestion de la performance collective**.
+                Ma Licence en Info-Com a développé un esprit critique aiguisé et un intérêt constant pour les médias, nourri par une veille quotidienne sur les tendances et les stratégies de communication innovantes. Je suis à la fois créatif et capable d'une grande discrétion, essentielle dans un environnement de Maison de luxe. Mes expériences associatives et de coaching m'ont habitué au travail en équipe et à la gestion de la performance collective.
             </p>
         </div>
 
@@ -243,48 +245,59 @@
         
         <div class="item">
             <h4>Master Humanités numériques - M1</h4>
-            <p>2025-2026 (en cours) - **Université Paris 8 Saint-Denis**</p>
+            <p>2025-2026 en cours - Université Paris 8 Saint-Denis</p>
             <p>Spécialisation dans les enjeux, les technologies et la gestion de l'information numérique.</p>
+            <ul>
+                <li>Sémiotique du numérique.</li>
+                <li>Bases de la programmation (HTML/CSS, Python).</li>
+                <li>Analyse et gestion de données web.</li>
+                <li>Programmation des systèmes d'information.</li>
+            </ul>
         </div>
         
         <div class="item">
             <h4>Licence Information et Communication</h4>
-            <p>2022-2025 - **Université Rennes 2**</p>
-            <p>Acquisition de l'esprit critique, connaissance approfondie des réseaux et des médias.</p>
+            <p>2022-2025 - Université Rennes 2 - Mention Assez Bien</p>
+            <p>Développement de l'esprit critique et analyse des stratégies de communication et des médias.</p>
+            <ul>
+                <li>Concevoir une infographie interactive pour la restitution des résultats d'une enquête sur l'environnement de travail (Reporting & Visuel).</li>
+                <li>Analyser les communications organisationnelles d'une enseigne spécialisée (Japanim - Stratégie de Marque).</li>
+                <li>Étudier des controverses médiatiques et numériques (Intelligence Artificielle et Transhumanisme).</li>
+                <li>Analyser des cas de gamification appliqués aux plateformes d'apprentissage.</li>
+            </ul>
         </div>
         
         <div class="item">
             <h4>Baccalauréat lycée Coëtlogon</h4>
-            <p>2022 - **Rennes**</p>
+            <p>2022 - Rennes</p>
         </div>
 
 
         <div class="section-header">Expériences Professionnelles & Associatives</div>
 
         <div class="item">
-            <h4>Bénévole - Coach équipes League of Legends - Rennes 2 Esport</h4>
+            <h4>Bénévole - Coach et Manager d'équipe Esport - Rennes 2 Esport</h4>
             <p>Septembre 2024 - Juin 2025</p>
             <ul>
-                <li>**Coordination et performance d'équipe :** Coaching individuel et collectif pour améliorer la coordination et la performance des joueurs.</li>
-                <li>Participation à l’organisation d’événements.</li>
-                <li style="font-style: italic;">(Démontre une forte capacité à la gestion de la coordination et du planning d'une équipe).</li>
+                <li>Gérer et coordonner les équipes : Coaching individuel et collectif pour améliorer la cohésion, la stratégie et la performance des joueurs.</li>
+                <li>Participer à l’organisation d’événements.</li>
             </ul>
         </div>
         
         <div class="item">
             <h4>Stage - Mouvement de la Paix</h4>
-            <p>Janvier 2022 - Mars 2022 - **Rennes**</p>
+            <p>Janvier 2022 - Mars 2022 - Rennes</p>
             <ul>
-                <li>**Création de contenu :** Conception et création d’une affiche promotionnelle pour un événement local.</li>
-                <li>Soutien à la logistique événementielle et collaboration avec d’autres stagiaires.</li>
+                <li>Créer une affiche promotionnelle pour un événement local.</li>
+                <li>Apporter un soutien à la logistique événementielle et collaborer avec d’autres stagiaires.</li>
             </ul>
         </div>
 
         <div class="item">
             <h4>Stage - Bretagne Mutations, Agence de relocation</h4>
-            <p>Mai 2021 - Juillet 2021 - **Rennes**</p>
+            <p>Mai 2021 - Juillet 2021 - Rennes</p>
             <ul>
-                <li>**Rigueur administrative et Reporting :** Constitution de dossiers de subventionnement et mise à jour de tableaux de bord.</li>
+                <li>Assurer la rigueur administrative et le Reporting : Constituer des dossiers de subventionnement et mettre à jour de tableaux de bord.</li>
             </ul>
         </div>
         
@@ -292,7 +305,7 @@
             <h4>Bénévole - L'épicerie gratuite de Rennes 2</h4>
             <p>Septembre 2022 - Juin 2025</p>
             <ul>
-                <li>Distribution alimentaire et récoltes de denrées. (Témoigne de l'engagement et de l'investissement personnel).</li>
+                <li>Participer à la distribution alimentaire et aux récoltes de denrées.</li>
             </ul>
         </div>
 
