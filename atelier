@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV - Ilan MORICE - Candidature Chanel</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .cv-container {
+            width: 100%;
+            max-width: 900px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            display: flex;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .sidebar {
+            width: 30%;
+            background-color: #000000; /* Classique Chanel */
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .main-content {
+            width: 70%;
+            padding: 30px;
+        }
+
+        .profile-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #fff;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-size: 2em;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+
+        h2 {
+            font-size: 1.2em;
+            font-weight: 400;
+            color: #ccc;
+            margin-top: 0;
+            margin-bottom: 30px;
+        }
+
+        h3 {
+            font-size: 1.5em;
+            color: #333;
+            border-bottom: 2px solid #ccc;
+            padding-bottom: 5px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        .section-header {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: #333;
+            border-bottom: 2px solid #333;
+            padding-bottom: 5px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        .contact-info a {
+            color: #ccc;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+        }
+
+        .contact-info a:hover {
+            color: #fff;
+        }
+
+        .item {
+            margin-bottom: 20px;
+        }
+
+        .item h4 {
+            font-size: 1.1em;
+            font-weight: 700;
+            color: #000;
+            margin: 0 0 5px 0;
+        }
+
+        .item p {
+            margin: 0;
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        .item ul {
+            padding-left: 20px;
+            margin-top: 5px;
+            color: #666;
+        }
+        
+        /* Spécifique à la sidebar pour les sections */
+        .sidebar .section-header {
+            color: #fff;
+            border-bottom: 2px solid #fff;
+            margin-top: 0;
+            margin-bottom: 15px;
+            text-align: left;
+            width: 100%;
+        }
+
+        .lang-list, .tools-list {
+            list-style: none;
+            padding: 0;
+            text-align: left;
+            width: 100%;
+        }
+        
+        .lang-list li, .tools-list li {
+            margin-bottom: 10px;
+            font-size: 0.9em;
+        }
+
+        .profile-summary {
+            font-size: 1em;
+            line-height: 1.5;
+            color: #333;
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+
+        .atouts {
+            margin-top: 15px;
+            font-size: 0.95em;
+            line-height: 1.5;
+            color: #333;
+            border-left: 3px solid #000000;
+            padding-left: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .cv-container {
+                flex-direction: column;
+                max-width: 600px;
+            }
+
+            .sidebar, .main-content {
+                width: 100%;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="cv-container">
+    
+    <div class="sidebar">
+        <!-- Photo de profil (gardée pour le style, mais à changer si non appropriée) -->
+        <img src="image cv arbre.jpg" alt="Photo de profil de Ilan" class="profile-photo">
+        
+        <h1>Ilan MORICE</h1>
+        <h2>Étudiant en Master Humanités Numériques</h2>
+
+        <div class="contact-info">
+            <a href="tel:+33786438601">Téléphone : 07 86 43 86 01</a>
+            <a href="mailto:nalimo352@gmail.com">Email: nalimo352@gmail.com</a>
+            <p>Stains</p>
+            <a href="https://github.com/nali-333" target="_blank">GitHub: nali-333</a>
+        </div>
+
+        <div class="item" style="width: 100%; margin-top: 30px;">
+            <div class="section-header">Langues & Certifications</div>
+            <ul class="lang-list">
+                <li>Français : Courant</li>
+                <li>Anglais : Opérationnel</li>
+            </ul>
+            <div style="margin-top: 15px;">
+                **CERTIFICATION VOLTAIRE** (Orthographe niveau technique)
+            </div>
+        </div>
+
+        <div class="item" style="width: 100%; margin-top: 30px;">
+            <div class="section-header">Compétences Techniques</div>
+            <ul class="tools-list">
+                <li>**Bureautique :** Suite Office (Excel, PowerPoint, Word)</li>
+                <li>**Création graphique :** Maîtrise des concepts de base (Photoshop, InDesign - *À adapter selon votre maîtrise*)</li>
+                <li>**Gestion de Contenu :** CMS, Réseaux Sociaux Professionnels (veille)</li>
+                <li>**Digital :** Bases HTML/CSS, Outils de reporting</li>
+            </ul>
+        </div>
+
+        <div class="item" style="width: 100%; margin-top: 30px;">
+            <div class="section-header">Centres d’Intérêt</div>
+            <ul class="lang-list">
+                <li>Sport & Esport (Coordination d'équipe)</li>
+                <li>Culture Pop & Gastronomie (Veille, tendances)</li>
+                <li>Musique</li>
+            </ul>
+        </div>
+        
+    </div>
+
+    <div class="main-content">
+        
+        <div class="section-header">Profil & Atouts Clés</div>
+        <p class="profile-summary">
+            Étudiant en Master (M1) en Humanités Numériques, je combine une solide base théorique en **Information et Communication** (Licence) avec une expertise des **enjeux numériques et technologiques**. Je recherche un environnement d'excellence pour mettre ma rigueur, ma capacité de coordination logistique et mon engagement au service de la Direction Communication et Presse des Maisons d'art.
+        </p>
+        
+        <div class="atouts">
+            <p>
+                Ma Licence en Info-Com a développé un **esprit critique aiguisé** et un **intérêt constant pour les médias**, nourri par une **veille quotidienne** sur les tendances et les stratégies de communication innovantes. Je suis à la fois **créatif** et capable d'une **grande discrétion**, essentielle dans un environnement de Maison de luxe. Mes expériences associatives et de coaching m'ont habitué au **travail en équipe** et à la **gestion de la performance collective**.
+            </p>
+        </div>
+
+
+        <div class="section-header">Formations</div>
+        
+        <div class="item">
+            <h4>Master Humanités numériques - M1</h4>
+            <p>2025-2026 (en cours) - **Université Paris 8 Saint-Denis**</p>
+            <p>Spécialisation dans les enjeux, les technologies et la gestion de l'information numérique.</p>
+        </div>
+        
+        <div class="item">
+            <h4>Licence Information et Communication</h4>
+            <p>2022-2025 - **Université Rennes 2**</p>
+            <p>Acquisition de l'esprit critique, connaissance approfondie des réseaux et des médias.</p>
+        </div>
+        
+        <div class="item">
+            <h4>Baccalauréat lycée Coëtlogon</h4>
+            <p>2022 - **Rennes**</p>
+        </div>
+
+
+        <div class="section-header">Expériences Professionnelles & Associatives</div>
+
+        <div class="item">
+            <h4>Bénévole - Coach équipes League of Legends - Rennes 2 Esport</h4>
+            <p>Septembre 2024 - Juin 2025</p>
+            <ul>
+                <li>**Coordination et performance d'équipe :** Coaching individuel et collectif pour améliorer la coordination et la performance des joueurs.</li>
+                <li>Participation à l’organisation d’événements.</li>
+                <li style="font-style: italic;">(Démontre une forte capacité à la gestion de la coordination et du planning d'une équipe).</li>
+            </ul>
+        </div>
+        
+        <div class="item">
+            <h4>Stage - Mouvement de la Paix</h4>
+            <p>Janvier 2022 - Mars 2022 - **Rennes**</p>
+            <ul>
+                <li>**Création de contenu :** Conception et création d’une affiche promotionnelle pour un événement local.</li>
+                <li>Soutien à la logistique événementielle et collaboration avec d’autres stagiaires.</li>
+            </ul>
+        </div>
+
+        <div class="item">
+            <h4>Stage - Bretagne Mutations, Agence de relocation</h4>
+            <p>Mai 2021 - Juillet 2021 - **Rennes**</p>
+            <ul>
+                <li>**Rigueur administrative et Reporting :** Constitution de dossiers de subventionnement et mise à jour de tableaux de bord.</li>
+            </ul>
+        </div>
+        
+        <div class="item">
+            <h4>Bénévole - L'épicerie gratuite de Rennes 2</h4>
+            <p>Septembre 2022 - Juin 2025</p>
+            <ul>
+                <li>Distribution alimentaire et récoltes de denrées. (Témoigne de l'engagement et de l'investissement personnel).</li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>
