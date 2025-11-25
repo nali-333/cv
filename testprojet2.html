@@ -1,1 +1,259 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV - Compétences Animées</title>
+    <!-- Chargement de Tailwind CSS pour un stylisme rapide et responsive -->
+    <!-- Nécessaire ici pour le conteneur principal et la structure Flex -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chargement d'Anime.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    
+    <!-- Importations Firebase (obligatoires pour le fonctionnement du Canvas) -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, doc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
+        // Variables globales fournies par l'environnement
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
+        const firebaseConfig = JSON.parse(typeof __firebase_config !== 'undefined' ? __firebase_config : '{}');
+        const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
+        
+        // Initialisation de Firebase
+        let app, db, auth;
+        
+        try {
+            if (Object.keys(firebaseConfig).length > 0) {
+                app = initializeApp(firebaseConfig);
+                db = getFirestore(app);
+                auth = getAuth(app);
+            } else {
+                console.error("Firebase config is missing or invalid.");
+            }
+        } catch (error) {
+            console.error("Firebase initialization failed:", error);
+        }
+
+        // Fonction pour démarrer l'animation après l'authentification
+        const startApp = async () => {
+            let userId = null;
+            
+            if (auth) {
+                try {
+                    if (initialAuthToken) {
+                        await signInWithCustomToken(auth, initialAuthToken);
+                    } else {
+                        await signInAnonymously(auth);
+                    }
+                    userId = auth.currentUser?.uid || 'anonymous-user';
+                    
+                    const initDocRef = doc(db, 'artifacts', appId, 'users', userId, 'config', 'init');
+                    
+                    const unsubscribe = onSnapshot(initDocRef, (docSnapshot) => {
+                        if (window.startSkillAnimations) {
+                            window.startSkillAnimations();
+                        }
+                        unsubscribe(); 
+                    }, (error) => {
+                        console.error("Error subscribing to init doc:", error);
+                        if (window.startSkillAnimations) {
+                            window.startSkillAnimations();
+                        }
+                    });
+
+                } catch (error) {
+                    console.error("Firebase Authentication failed:", error);
+                    if (window.startSkillAnimations) {
+                        window.startSkillAnimations();
+                    }
+                }
+            } else {
+                if (window.startSkillAnimations) {
+                    window.startSkillAnimations();
+                }
+            }
+        };
+
+        // Démarrer le processus d'initialisation
+        window.addEventListener('load', startApp);
+    </script>
+
+    <style>
+        /* Définition de la police Inter (améliore l'apparence) */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            padding: 40px;
+            background: #f7f7f7;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2rem; /* Plus grand pour l'esthétique */
+            margin-bottom: 20px;
+            color: #1f2937;
+        }
+
+        .skill-item {
+            margin-bottom: 20px;
+        }
+
+        /* Conteneur de la barre (votre .bar) */
+        .skill-bar-container {
+            background: #e0e0e0;
+            height: 12px;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        /* Remplissage de la barre (votre .fill) */
+        .skill-bar-fill {
+            height: 100%;
+            width: 0%; /* Initialisé à 0 pour l'animation */
+            background: #3c82f6;
+            border-radius: 6px;
+        }
+
+        /* Conteneur pour le Label et le Compteur */
+        .skill-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 6px;
+        }
+
+        .skill-label-text {
+            font-weight: bold;
+            color: #374151;
+        }
+
+        /* Style pour le compteur de pourcentage */
+        .skill-counter {
+            font-weight: 700;
+            color: #3c82f6; /* Bleu primaire */
+            min-width: 3rem; 
+            text-align: right;
+            font-size: 0.875rem; /* text-sm */
+        }
+    </style>
+</head>
+<body>
+
+    <main class="max-w-xl mx-auto">
+        <h1>Mes Soft Skills et Approches</h1>
+
+        <div id="skills-section" class="space-y-6">
+            
+            <!-- Compétence 1 : Travail d'équipe -->
+            <div class="skill-item" data-skill-level="85">
+                <div class="skill-header">
+                    <span class="skill-label-text">Travail d'équipe</span>
+                    <span class="skill-counter" data-counter="0">0%</span>
+                </div>
+                <div class="skill-bar-container">
+                    <div class="skill-bar-fill" data-skill-fill></div>
+                </div>
+            </div>
+
+            <!-- Compétence 2 : Autonomie -->
+            <div class="skill-item" data-skill-level="80">
+                <div class="skill-header">
+                    <span class="skill-label-text">Autonomie</span>
+                    <span class="skill-counter" data-counter="0">0%</span>
+                </div>
+                <div class="skill-bar-container">
+                    <div class="skill-bar-fill" data-skill-fill></div>
+                </div>
+            </div>
+
+            <!-- Compétence 3 : Persévérance -->
+            <div class="skill-item" data-skill-level="90">
+                <div class="skill-header">
+                    <span class="skill-label-text">Persévérance</span>
+                    <span class="skill-counter" data-counter="0">0%</span>
+                </div>
+                <div class="skill-bar-container">
+                    <div class="skill-bar-fill" data-skill-fill></div>
+                </div>
+            </div>
+
+            <!-- Compétence 4 : Esprit critique -->
+            <div class="skill-item" data-skill-level="75">
+                <div class="skill-header">
+                    <span class="skill-label-text">Esprit critique</span>
+                    <span class="skill-counter" data-counter="0">0%</span>
+                </div>
+                <div class="skill-bar-container">
+                    <div class="skill-bar-fill" data-skill-fill></div>
+                </div>
+            </div>
+
+            <!-- Compétence 5 : Culture numérique & médias -->
+            <div class="skill-item" data-skill-level="70">
+                <div class="skill-header">
+                    <span class="skill-label-text">Culture numérique & médias</span>
+                    <span class="skill-counter" data-counter="0">0%</span>
+                </div>
+                <div class="skill-bar-container">
+                    <div class="skill-bar-fill" data-skill-fill></div>
+                </div>
+            </div>
+            
+        </div>
+        
+    </main>
+
+    <script>
+        // Fonction principale pour l'animation
+        window.startSkillAnimations = function() {
+            // Utilise l'attribut data-skill-level pour récupérer le niveau
+            const skillItems = document.querySelectorAll('.skill-item');
+            
+            // Crée une timeline Anime.js pour orchestrer les animations en cascade
+            const tl = anime.timeline({
+                easing: 'easeInOutExpo',
+                duration: 1500, // Durée de base pour chaque animation
+                delay: anime.stagger(200), // Décalage de 200ms entre le début de chaque barre
+                autoplay: true 
+            });
+
+            skillItems.forEach((item, index) => {
+                const level = item.getAttribute('data-skill-level'); 
+                const fillElement = item.querySelector('[data-skill-fill]'); 
+                const counterElement = item.querySelector('[data-counter]'); 
+                
+                // 1. Animation de la Largeur (la barre se remplit)
+                tl.add({
+                    targets: fillElement,
+                    width: `${level}%`, // Anime la propriété CSS 'width' de 0% à 'level%'
+                }, 0); // Le '0' permet d'aligner cette animation au début du stagger
+
+                
+                // 2. Animation du Compteur Numérique (le nombre s'incrémente)
+                tl.add({
+                    targets: { p: 0 }, // Propriété JS de départ
+                    p: level, // Propriété JS d'arrivée
+                    round: 1, // Arrondir à l'entier le plus proche
+                    duration: 1500,
+                    easing: 'easeInOutExpo',
+                    update: function(anim) {
+                        // Mettre à jour l'élément HTML à chaque frame de l'animation
+                        // La valeur animée se trouve dans anim.animations[0].currentValue
+                        counterElement.textContent = Math.round(anim.animations[0].currentValue) + '%';
+                    }
+                }, index * 200); // Synchroniser l'animation du compteur avec le stagger de la barre
+
+            });
+        };
+        
+        // --- PROCHAINE ÉTAPE : DÉCLENCHEMENT AU SCROLL ---
+        // Pour déclencher l'animation uniquement lorsque l'utilisateur atteint la section :
+        // 1. Déplacer `window.startSkillAnimations()` dans la fonction `callback` de l'Intersection Observer.
+        // 2. Supprimer la ligne `window.addEventListener('load', startApp)` et créer l'Observer.
+        // 3. Vous n'aurez plus besoin du code Firebase, car il est géré par la librairie
+        //    qui utilise window.addEventListener('load', startApp) en interne. 
+    </script>
+</body>
+</html>
