@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon CV - Projet Anime.js V3 (Algorithmique & Interactif)</title>
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f4f4f9;
+        }
+        h1, h2 {
+            color: #333;
+            border-bottom: 2px solid #0078d7;
+            padding-bottom: 5px;
+            margin-top: 30px;
+        }
+        
+        /* Styles des Barres de Compétences */
+        .skill-item { 
+            margin-bottom: 25px; 
+        }
+        .skill-label { 
+            font-weight: bold; 
+            margin-bottom: 5px; 
+            display: block; 
+            color: #333;
+        }
+        .skill-bar-container { 
+            background-color: #e0e0e0; /* Fond gris clair */
+            border-radius: 4px; 
+            height: 20px; 
+            overflow: hidden; 
+            box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+        }
+        .skill-bar-fill { 
+            height: 100%; 
+            width: 0; /* Démarrage à zéro pour l'animation */
+            border-radius: 4px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: flex-end; 
+            padding: 0 5px; 
+            box-sizing: border-box; 
+            /* Transition rapide pour le changement de couleur du slider */
+            transition: background-color 0.3s ease; 
+        }
+        .skill-percentage { 
+            color: #ffffff; 
+            font-size: 12px; 
+            font-weight: bold;
+        }
+
+        /* Styles spécifiques à l'Évaluation Utilisateur */
+        #project-image { 
+            max-width: 100%; 
+            height: auto; 
+            margin-bottom: 20px; 
+            border: 1px solid #ccc; 
+        }
+        #evaluation-slider { 
+            width: 100%; 
+            margin: 10px 0 20px 0; 
+        }
+    </style>
+</head>
+<body>
+    
+    <h1>Projet d'Amélioration de CV V3</h1>
+    <p>Cette version utilise la **génération algorithmique** pour les compétences et ajoute une **barre d'évaluation interactive**.</p>
+    
+    <hr>
+
+    <h2>🎯 Mes Compétences Clés (Génération Algorithmique)</h2>
+    <div id="skills-container"></div>
+    
+    <hr>
+
+    <h2>🗳️ Évaluation de Projet par les Visiteurs</h2>
+    <img id="project-image" src="https://via.placeholder.com/600x300?text=Image+de+votre+Projet+web+%C3%A0+Evaluer" alt="Exemple de projet pour évaluation">
+    
+    <div id="user-evaluation-section">
+        <label for="evaluation-slider" style="display: block; font-size: 1.1em; margin-bottom: 10px;">
+            Donnez une note à ce projet (0-100%) :
+        </label>
+        
+        <input type="range" id="evaluation-slider" min="0" max="100" value="50">
+        
+        <div class="skill-item">
+            <span class="skill-label">Note Visiteur Actuelle (Locale)</span>
+            <div class="skill-bar-container">
+                <div class="skill-bar-fill" id="user-skill-fill" data-level="50" style="background-color: #ff9800;">
+                    <span class="skill-percentage" id="user-skill-percentage">50%</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    
+    <script>
+        
+        // 1. Définition des données pour la génération algorithmique
+        const skillsData = [
+            { name: "Collaboration", level: 85, color: "#2ecc71" },
+            { name: "Adaptabilité", level: 70, color: "#3498db" },
+            { name: "Rigueur", level: 90, color: "#9b59b6" },
+            { name: "Créativité", level: 65, color: "#f1c40f" }
+        ];
+
+        // Fonction pour créer la structure HTML d'une barre (méthode algorithmique)
+        function createSkillBarElement(skill) {
+            const item = document.createElement('div');
+            item.className = 'skill-item';
