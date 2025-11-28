@@ -44,7 +44,6 @@
             justify-content: flex-end; 
             padding: 0 5px; 
             box-sizing: border-box; 
-            /* Transition rapide pour le changement de couleur du slider */
             transition: background-color 0.3s ease; 
         }
         .skill-percentage { 
@@ -68,22 +67,23 @@
 </head>
 <body>
     
-    <h1>Projet d'Amélioration de CV V3</h1>
-    <p>Cette version utilise la **génération algorithmique** pour les compétences et ajoute une **barre d'évaluation interactive**.</p>
+    <h1>Mon CV - Compétences Dynamiques</h1>
+    <p>Cette page utilise l'approche algorithmique pour générer les éléments du DOM, inspirée du cours 2.</p>
     
     <hr>
 
-    <h2>🎯 Mes Compétences Clés (Génération Algorithmique)</h2>
+    <h2>🎯 Mes Compétences Clés</h2>
     <div id="skills-container"></div>
     
     <hr>
 
-    <h2>🗳️ Évaluation de Projet par les Visiteurs</h2>
-    <img id="project-image" src="https://via.placeholder.com/600x300?text=Image+de+votre+Projet+web+%C3%A0+Evaluer" alt="Exemple de projet pour évaluation">
-    
     <div id="user-evaluation-section">
+        <h2>Donnez une note à ce projet</h2>
+        
+        <img id="project-image" src="https://via.placeholder.com/600x300?text=Mon+Projet+web+%C3%A0+Evaluer" alt="Exemple de projet pour évaluation">
+        
         <label for="evaluation-slider" style="display: block; font-size: 1.1em; margin-bottom: 10px;">
-            Donnez une note à ce projet (0-100%) :
+            Votre Note (0-100%) :
         </label>
         
         <input type="range" id="evaluation-slider" min="0" max="100" value="50">
@@ -112,5 +112,106 @@
 
         // Fonction pour créer la structure HTML d'une barre (méthode algorithmique)
         function createSkillBarElement(skill) {
+            // Création du conteneur parent (.skill-item)
             const item = document.createElement('div');
             item.className = 'skill-item';
+            
+            // Création et ajout du label
+            const label = document.createElement('span');
+            label.className = 'skill-label';
+            label.textContent = skill.name;
+            item.appendChild(label);
+            
+            // Création du conteneur de fond
+            const barContainer = document.createElement('div');
+            barContainer.className = 'skill-bar-container';
+            
+            // Création de la barre de remplissage (.skill-bar-fill)
+            const barFill = document.createElement('div');
+            barFill.className = 'skill-bar-fill';
+            barFill.setAttribute('data-level', skill.level); // Stocke la valeur cible
+            barFill.style.backgroundColor = skill.color; 
+            barFill.style.width = '0%'; // Démarrage à 0%
+            
+            // Création du pourcentage
+            const percentage = document.createElement('span');
+            percentage.className = 'skill-percentage';
+            percentage.textContent = '0%';
+            barFill.appendChild(percentage);
+            
+            barContainer.appendChild(barFill);
+            item.appendChild(barContainer);
+            
+            return barFill; // On retourne l'élément à animer
+        }
+
+        // Fonction d'animation Anime.js réutilisable
+        function animateSkillBar(barElement) {
+            const targetLevel = barElement.getAttribute('data-level');
+            const percentageDisplay = barElement.querySelector('.skill-percentage');
+            
+            anime({
+                targets: barElement,
+                width: `${targetLevel}%`,
+                duration: 1800,
+                easing: 'easeInOutQuart',
+                
+                // Fonction de mise à jour pour le compteur numérique
+                update: function(anim) {
+                    // Calcul de la valeur actuelle basée sur la progression de l'animation
+                    const value = Math.round(anim.progress * parseInt(targetLevel, 10) / 100);
+                    percentageDisplay.textContent = `${value}%`;
+                }
+            });
+        }
+
+        // Exécution principale
+        document.addEventListener('DOMContentLoaded', () => {
+            const skillsContainer = document.getElementById('skills-container');
+            const barsToAnimate = [];
+
+            // --- Logique Algorithmique : Boucle de génération ---
+            skillsData.forEach(skill => {
+                const barFillElement = createSkillBarElement(skill);
+                
+                // Ajout de la structure complète au DOM
+                skillsContainer.appendChild(barFillElement.closest('.skill-item'));
+                barsToAnimate.push(barFillElement);
+            });
+
+            // Lancement des animations initiales
+            barsToAnimate.forEach(bar => {
+                animateSkillBar(bar);
+            });
+
+            // --- Logique de la Barre "Votre Évaluation" (Interactivité) ---
+            const slider = document.getElementById('evaluation-slider');
+            const userBarFill = document.getElementById('user-skill-fill');
+            
+            // Animation de la barre utilisateur au chargement
+            animateSkillBar(userBarFill);
+
+            // Écouter le changement du curseur
+            slider.addEventListener('input', (event) => {
+                const level = event.target.value;
+                const userPercentageDisplay = userBarFill.querySelector('.skill-percentage');
+                
+                // 1. Mise à jour de la largeur et du texte en temps réel
+                userBarFill.style.width = `${level}%`;
+                userPercentageDisplay.textContent = `${level}%`;
+                
+                // 2. Changement de couleur selon la note pour un effet visuel
+                let color;
+                if (level < 40) {
+                    color = '#e74c3c'; // Rouge
+                } else if (level < 70) {
+                    color = '#f39c12'; // Jaune/Orange
+                } else {
+                    color = '#27ae60'; // Vert
+                }
+                userBarFill.style.backgroundColor = color;
+            });
+        });
+    </script>
+</body>
+</html>
