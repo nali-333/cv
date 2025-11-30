@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon CV - Projet Anime.js V4 (Scroll & Vidéo)</title>
+    
+    <style>
+        /* Styles de Base du CV (Fond Noir) */
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #1a1a1a; 
+            color: #f0f0f0; 
+        }
+        h1, h2 {
+            color: #007bff; 
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 5px;
+            margin-top: 30px;
+        }
+        hr {
+            border-top: 1px solid #333;
+        }
+        
+        /* Styles des Barres de Compétences (Design V2/V1) */
+        .skill-item { 
+            margin-bottom: 25px; 
+        }
+        .skill-label { 
+            font-weight: bold; 
+            margin-bottom: 5px; 
+            display: block; 
+            color: #f0f0f0; 
+        }
+        .skill-bar-container { 
+            background-color: #333; 
+            border-radius: 6px; 
+            height: 25px; 
+            overflow: hidden; 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.5); 
+        }
+        .skill-bar-fill { 
+            height: 100%; 
+            width: 0; /* Démarrage à zéro pour l'animation */
+            border-radius: 6px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: flex-end; 
+            padding: 0 8px; 
+            box-sizing: border-box; 
+            transition: background-color 0.3s ease; 
+        }
+        .skill-percentage { 
+            color: #1a1a1a; 
+            font-size: 14px; 
+            font-weight: bold;
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+        }
+
+        /* Styles de la Vidéo (Responsive 16:9) */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* Rapport 16:9 */
+            height: 0;
+            overflow: hidden;
+            margin-bottom: 20px;
+            background-color: #000;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* Styles spécifiques à l'Évaluation Utilisateur */
+        #evaluation-slider { 
+            width: 100%; 
+            margin: 10px 0 20px 0; 
+        }
+    </style>
+</head>
+<body>
+    
+    <h1>Mon CV - Projet Dynamique V4</h1>
+    <p>Cette version utilise l'approche **algorithmique**, l'**interactivité** et le **déclenchement au scroll**.</p>
+    
+    <hr>
+
+    <section id="skills-section">
+        <h2>🎯 Mes Compétences Clés</h2>
+        <div id="skills-container"></div>
+    </section>
+    
+    <hr>
+
+    <div id="user-evaluation-section">
+        <h2>🗳️ Évaluation de Projet</h2>
+        
+        <div class="video-container">
+            <iframe 
+                id="project-video"
+                src="https://www.youtube.com/embed/zASBX3xLYxE" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+            </iframe>
+        </div>
+        
+        <label for="evaluation-slider" style="display: block; font-size: 1.1em; margin-bottom: 10px;">
+            Donnez votre Note à cette réalisation (0-100%) :
+        </label>
+        
+        <input type="range" id="evaluation-slider" min="0" max="100" value="50">
+        
+        <div class="skill-item">
+            <span class="skill-label">Note Visiteur Actuelle (Locale)</span>
+            <div class="skill-bar-container">
+                <div class="skill-bar-fill" id="user-skill-fill" data-level="50" style="background-color: #f1c40f;">
+                    <span class="skill-percentage" id="user-skill-percentage">50%</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    
+    <script>
+        
+        // 1. Définition des données pour la génération algorithmique
+        const skillsData = [
+            { name: "Collaboration", level: 85, color: "#e74c3c" },
+            { name: "Adaptabilité", level: 70, color: "#3498db" },
+            { name: "Rigueur", level: 90, color: "#2ecc71" },
+            { name: "Créativité", level: 65, color: "#f1c40f" }
+        ];
+
+        // Fonction pour créer la structure HTML d'une barre (Algorithmique)
+        function createSkillBarElement(skill) {
+            const item = document.createElement('div');
+            item.className = 'skill-item';
+            
+            const label = document.createElement('span');
+            label.className = 'skill-label';
+            label.textContent = skill.name;
+            item.appendChild(label);
+            
+            const barContainer = document.createElement('div');
+            barContainer.className = 'skill-bar-container';
+            
+            const barFill = document.createElement('div');
+            barFill.className = 'skill-bar-fill';
+            barFill.setAttribute('data-level', skill.level);
+            barFill.style.backgroundColor = skill.color; 
+            barFill.style.width = '0%'; // IMPORTANT : Reste à 0% en attente du scroll
+            
+            const percentage = document.createElement('span');
+            percentage.className = 'skill-percentage';
+            percentage.textContent = '0%';
+            barFill.appendChild(percentage);
+            
+            barContainer.appendChild(barFill);
+            item.appendChild(barContainer);
+            
+            return barFill; 
+        }
+
+        // Fonction d'animation Anime.js réutilisable
+        function animateSkillBar(barElement) {
+            const targetLevel = barElement.getAttribute('data-level');
+            const percentageDisplay = barElement.querySelector('.skill-percentage');
+            
+            // S'assurer que le compteur part de 0% si l'animation est relancée
+            percentageDisplay.textContent = '0%'; 
+
+            anime({
+                targets: barElement,
+                width: `${targetLevel}%`,
+                duration: 1800,
+                easing: 'easeInOutQuart',
+                
+                update: function(anim) {
+                    const value = Math.round(anim.progress * parseInt(targetLevel, 10) / 100);
+                    percentageDisplay.textContent = `${value}%`;
+                }
+            });
+        }
+
+        // Exécution principale
+        document.addEventListener('DOMContentLoaded', () => {
+            const skillsSection = document.getElementById('skills-section'); 
+            const skillsContainer = document.getElementById('skills-container');
+            const barsToAnimate = [];
+
+            // --- Génération Algorithmique des Compétences ---
+            skillsData.forEach(skill => {
+                const barFillElement = createSkillBarElement(skill);
+                skillsContainer.appendChild(barFillElement.closest('.skill-item'));
+                barsToAnimate.push(barFillElement);
+            });
+            
+            // --- Déclenchement au Scroll (Intersection Observer API) ---
+            
+            const observerCallback = (entries, observer) => {
+                entries.forEach(entry => {
+                    // Si la cible (skills-section) est visible
+                    if (entry.isIntersecting) {
+                        // Lancement de toutes les animations générées
+                        barsToAnimate.forEach(bar => {
+                            animateSkillBar(bar);
+                        });
+
+                        // Arrêter l'observation pour que l'animation ne se relance pas au scroll
+                        observer.unobserve(entry.target); 
+                    }
+                });
+            };
+
+            const observerOptions = {
+                root: null, 
+                rootMargin: '0px',
+                threshold: 0.1 // Déclenchement dès que 10% de l'élément est visible
+            };
+
+            const skillObserver = new IntersectionObserver(observerCallback, observerOptions);
+            skillObserver.observe(skillsSection); // Commence la surveillance
+
+
+            // --- Logique de la Barre "Votre Évaluation" (Interactivité) ---
+            const slider = document.getElementById('evaluation-slider');
+            const userBarFill = document.getElementById('user-skill-fill');
+            
+            // Animation de la barre utilisateur au chargement
+            animateSkillBar(userBarFill);
+
+            // Écouter le changement du curseur
+            slider.addEventListener('input', (event) => {
+                const level = event.target.value;
+                const userPercentageDisplay = userBarFill.querySelector('.skill-percentage');
+                
+                userBarFill.style.width = `${level}%`;
+                userPercentageDisplay.textContent = `${level}%`;
+                
+                // Changement de couleur dynamique selon la note
+                let color;
+                if (level < 40) { color = '#e74c3c'; }
+                else if (level < 70) { color = '#f1c40f'; }
+                else { color = '#2ecc71'; }
+                userBarFill.style.backgroundColor = color;
+            });
+        });
+    </script>
+</body>
+</html>
