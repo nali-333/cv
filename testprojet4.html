@@ -6,144 +6,142 @@
     <title>Mon CV - Projet V4 (Design Firefox & Scroll)</title>
     
     <style>
-        /* Styles de Base (Fond sombre dégradé et texte violet clair) */
+        /* --- DESIGN INSPIRÉ DE FIREFOX NIGHT --- */
+        
         body {
-            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif; /* Police moderne sans-serif */
-            padding: 30px;
-            /* Dégradé sombre inspiré du fond Firefox */
-            background: linear-gradient(135deg, #1a0524 0%, #320b45 100%);
-            color: #d4bdf5; /* Violet clair pour le texte courant */
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            padding: 40px;
+            /* Fond Noir profond demandé */
+            background-color: #050505; 
+            /* Légère lueur en arrière-plan pour la profondeur */
+            background-image: radial-gradient(circle at 10% 20%, rgba(118, 59, 219, 0.15) 0%, transparent 20%);
+            color: #e0e0e0; /* Texte gris clair pour la lisibilité sur noir */
             line-height: 1.6;
         }
 
-        /* Titres (Style "Firefox" : Violet vibrant avec un léger effet lumineux) */
-        h1, h2 {
-            color: #a673e8; /* Violet vibrant */
-            font-weight: 300; /* Plus fin pour un look moderne */
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-top: 40px;
-            border-bottom: 2px solid rgba(166, 115, 232, 0.3); /* Ligne violette subtile */
-            padding-bottom: 10px;
-            /* Léger effet de "lueur" pour faire ressortir le texte */
-            text-shadow: 0 0 15px rgba(166, 115, 232, 0.4);
+        /* LE TITRE STYLE "FIREFOX" (Dégradé de couleurs sur le texte) */
+        h1 {
+            font-size: 3em;
+            font-weight: 800; /* Très gras */
+            margin-bottom: 10px;
+            /* Le dégradé magique : Violet -> Bleu -> Cyan */
+            background: linear-gradient(90deg, #8a2be2 0%, #4facfe 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent; /* Rend le texte transparent pour voir le fond */
+            display: inline-block;
         }
-        h1 { font-size: 2.5em; }
 
-        hr {
-            border: none;
-            border-top: 1px solid rgba(166, 115, 232, 0.2);
-            margin: 30px 0;
+        h2 {
+            color: #d4bdf5; /* Violet très clair */
+            border-bottom: 2px solid #6200ea; /* Soulignement violet électrique */
+            padding-bottom: 10px;
+            margin-top: 50px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 1.5em;
+        }
+
+        p {
+            font-size: 1.1em;
+            color: #b0b0b0;
         }
         
-        /* Styles des Barres de Compétences (Adaptés au nouveau thème) */
+        /* --- BARRES DE COMPÉTENCES --- */
         .skill-item { 
-            margin-bottom: 25px; 
+            margin-bottom: 30px; 
         }
+        
         .skill-label { 
-            font-weight: 600; 
+            font-weight: bold; 
             margin-bottom: 8px; 
             display: block; 
-            color: #ffffff; /* Label blanc pour contraster */
-            letter-spacing: 0.5px;
+            color: #ffffff; 
+            font-size: 1.1em;
         }
+        
         .skill-bar-container { 
-            background-color: rgba(255, 255, 255, 0.1); /* Fond semi-transparent */
-            border-radius: 10px; /* Coins plus arrondis */
-            height: 28px; 
+            /* Fond gris très foncé pour contraster avec le noir */
+            background-color: #1a1a1a; 
+            border-radius: 8px; 
+            height: 24px; 
             overflow: hidden; 
-            backdrop-filter: blur(5px); /* Effet de flou d'arrière-plan */
-            box-shadow: inset 0 2px 5px rgba(0,0,0,0.3); 
+            border: 1px solid #333; /* Fine bordure subtile */
         }
+        
         .skill-bar-fill { 
             height: 100%; 
-            width: 0; /* Démarrage à zéro pour l'animation au scroll */
-            border-radius: 10px; 
+            width: 0; /* DÉPART À 0% POUR LE SCROLL */
+            border-radius: 8px; 
             display: flex; 
             align-items: center; 
             justify-content: flex-end; 
-            padding: 0 12px; 
-            box-sizing: border-box; 
-            transition: background-color 0.4s ease, width 0.1s linear;
-            /* Dégradé subtil sur les barres pour un effet de profondeur */
-            background-image: linear-gradient(to right, rgba(255,255,255,0.1), transparent);
+            padding-right: 10px;
+            /* Dégradé sur la barre elle-même pour l'effet "Néon" */
+            background-image: linear-gradient(90deg, rgba(255,255,255,0.1), transparent);
         }
+        
         .skill-percentage { 
-            color: #ffffff; 
-            font-size: 14px; 
+            color: #fff; 
+            font-size: 13px; 
             font-weight: bold;
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+            text-shadow: 0 1px 3px rgba(0,0,0,0.8);
         }
 
-        /* Styles de la Vidéo */
+        /* --- VIDÉO ET INTERACTIVITÉ --- */
         .video-container {
             position: relative;
             padding-bottom: 56.25%;
             height: 0;
             overflow: hidden;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
             background-color: #000;
             border-radius: 12px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
-            border: 1px solid rgba(166, 115, 232, 0.2);
+            box-shadow: 0 0 20px rgba(138, 43, 226, 0.15); /* Ombre violette */
+            border: 1px solid #333;
         }
         .video-container iframe {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: 0;
+            top: 0; left: 0; width: 100%; height: 100%; border: 0;
         }
 
-        /* Styles spécifiques à l'Évaluation Utilisateur */
         #user-evaluation-section label {
-            color: #ffffff;
-            font-weight: bold;
+            color: #d4bdf5;
+            font-size: 1.2em;
         }
-        #evaluation-slider { 
-            width: 100%; 
-            margin: 15px 0 25px 0;
-            accent-color: #a673e8; /* Couleur du curseur du slider */
+
+        /* Personnalisation du slider (Range Input) */
+        input[type=range] {
+            width: 100%;
+            margin: 20px 0;
+            accent-color: #8a2be2; /* Couleur du curseur violet */
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
     
-    <h1>Mon CV - Projet Dynamique V4</h1>
-    <p>Cette version présente un <strong>nouveau design immersif</strong> et améliore l'expérience utilisateur grâce au <strong>déclenchement des animations au scroll</strong>.</p>
+    <h1>Mon CV - Projet V4</h1>
+    <p>Design inspiré de l'univers <strong>Firefox Night</strong> : Fond noir et dégradés violets.</p>
     
-    <hr>
-
     <section id="skills-section">
         <h2>🎯 Mes Compétences Clés</h2>
         <div id="skills-container"></div>
     </section>
     
-    <hr>
-
     <div id="user-evaluation-section">
         <h2>🗳️ Évaluation de Projet</h2>
         
         <div class="video-container">
-            <iframe 
-                id="project-video"
-                src="https://www.youtube.com/embed/zASBX3xLYxE" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                allowfullscreen>
-            </iframe>
+            <iframe src="https://www.youtube.com/embed/zASBX3xLYxE" allowfullscreen></iframe>
         </div>
         
-        <label for="evaluation-slider" style="display: block; font-size: 1.1em; margin-bottom: 10px;">
-            Donnez votre Note à cette réalisation (0-100%) :
-        </label>
-        
+        <label for="evaluation-slider">Votre Note (0-100%) :</label>
         <input type="range" id="evaluation-slider" min="0" max="100" value="50">
         
         <div class="skill-item">
-            <span class="skill-label">Note Visiteur Actuelle (Locale)</span>
+            <span class="skill-label">Note Visiteur (Live)</span>
             <div class="skill-bar-container">
-                <div class="skill-bar-fill" id="user-skill-fill" data-level="50" style="background-color: #9c27b0;">
+                <div class="skill-bar-fill" id="user-skill-fill" data-level="50" style="background-color: #6200ea;">
                     <span class="skill-percentage" id="user-skill-percentage">50%</span>
                 </div>
             </div>
@@ -151,60 +149,42 @@
     </div>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
-    
     <script>
-        
-        // 1. Données (Nouvelle palette de couleurs "Firefox/Cyberpunk")
+        // 1. DONNÉES (Couleurs adaptées au thème noir/violet)
         const skillsData = [
-            { name: "Collaboration", level: 85, color: "#d500f9" }, // Rose/Violet vif
-            { name: "Adaptabilité", level: 70, color: "#651fff" },  // Violet profond
-            { name: "Rigueur", level: 90, color: "#00e5ff" },       // Cyan lumineux
-            { name: "Créativité", level: 65, color: "#ff4081" }     // Rose néon
+            { name: "Collaboration", level: 85, color: "#bf5af2" }, // Violet clair
+            { name: "Adaptabilité", level: 70, color: "#0a84ff" },  // Bleu Firefox
+            { name: "Rigueur", level: 90, color: "#32d74b" },      // Vert néon (contraste)
+            { name: "Créativité", level: 65, color: "#ff375f" }     // Rose/Rouge néon
         ];
 
-        // Fonction de création algorithmique (inchangée)
+        // 2. GÉNÉRATION ALGORITHMIQUE
         function createSkillBarElement(skill) {
             const item = document.createElement('div');
             item.className = 'skill-item';
             
-            const label = document.createElement('span');
-            label.className = 'skill-label';
-            label.textContent = skill.name;
-            item.appendChild(label);
-            
-            const barContainer = document.createElement('div');
-            barContainer.className = 'skill-bar-container';
-            
-            const barFill = document.createElement('div');
-            barFill.className = 'skill-bar-fill';
-            barFill.setAttribute('data-level', skill.level);
-            barFill.style.backgroundColor = skill.color; 
-            barFill.style.width = '0%'; // IMPORTANT : Reste à 0% en attente du scroll
-            
-            const percentage = document.createElement('span');
-            percentage.className = 'skill-percentage';
-            percentage.textContent = '0%';
-            barFill.appendChild(percentage);
-            
-            barContainer.appendChild(barFill);
-            item.appendChild(barContainer);
-            
-            return barFill; 
+            // Création manuelle du HTML via JS (Algorithmique)
+            item.innerHTML = `
+                <span class="skill-label">${skill.name}</span>
+                <div class="skill-bar-container">
+                    <div class="skill-bar-fill" data-level="${skill.level}" style="background-color: ${skill.color}; width: 0%;">
+                        <span class="skill-percentage">0%</span>
+                    </div>
+                </div>
+            `;
+            return item.querySelector('.skill-bar-fill');
         }
 
-        // Fonction d'animation Anime.js réutilisable
-        function animateSkillBar(barElement, duration = 1800, easing = 'easeInOutQuart') {
+        // 3. FONCTION D'ANIMATION (Réutilisable)
+        function animateSkillBar(barElement, duration = 2000) {
             const targetLevel = barElement.getAttribute('data-level');
             const percentageDisplay = barElement.querySelector('.skill-percentage');
             
-            // Reset du texte si réanimation
-            percentageDisplay.textContent = '0%'; 
-
             anime({
                 targets: barElement,
                 width: `${targetLevel}%`,
                 duration: duration,
-                easing: easing,
+                easing: 'spring(1, 80, 10, 0)', // Effet rebond dynamique
                 update: function(anim) {
                     const value = Math.round(anim.progress * parseInt(targetLevel, 10) / 100);
                     percentageDisplay.textContent = `${value}%`;
@@ -212,66 +192,49 @@
             });
         }
 
-        // Exécution principale
+        // 4. LOGIQUE PRINCIPALE
         document.addEventListener('DOMContentLoaded', () => {
-            const skillsSection = document.getElementById('skills-section'); 
             const skillsContainer = document.getElementById('skills-container');
+            const skillsSection = document.getElementById('skills-section');
             const barsToAnimate = [];
 
-            // --- 1. Génération Algorithmique ---
+            // A. Boucle de génération
             skillsData.forEach(skill => {
-                const barFillElement = createSkillBarElement(skill);
-                skillsContainer.appendChild(barFillElement.closest('.skill-item'));
-                barsToAnimate.push(barFillElement);
+                const bar = createSkillBarElement(skill);
+                skillsContainer.appendChild(bar.closest('.skill-item'));
+                barsToAnimate.push(bar);
             });
-            
-            // --- 2. Amélioration UX : Déclenchement au Scroll ---
-            // On utilise l'Intersection Observer API
-            
-            const observerCallback = (entries, observer) => {
-                entries.forEach(entry => {
-                    // Si la section des compétences entre dans l'écran
-                    if (entry.isIntersecting) {
-                        // On lance l'animation pour chaque barre générée
-                        barsToAnimate.forEach(bar => {
-                            // Utilisation d'un effet "spring" pour plus de dynamisme
-                            animateSkillBar(bar, 2000, 'spring(1, 80, 10, 0)');
-                        });
 
-                        // IMPORTANT : On arrête d'observer pour que l'animation ne se joue qu'une fois
-                        observer.unobserve(entry.target); 
+            // B. INTERSECTION OBSERVER (Déclenchement au Scroll)
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Lancer l'animation uniquement quand visible
+                        barsToAnimate.forEach(bar => animateSkillBar(bar));
+                        observer.unobserve(entry.target); // Arrêter d'observer
                     }
                 });
-            };
-
-            // Options : déclenche quand 15% de la section est visible
-            const observerOptions = { threshold: 0.15 };
-
-            const skillObserver = new IntersectionObserver(observerCallback, observerOptions);
-            skillObserver.observe(skillsSection); // On commence à surveiller la section
-
-
-            // --- 3. Interactivité : Barre d'Évaluation ---
-            const slider = document.getElementById('evaluation-slider');
-            const userBarFill = document.getElementById('user-skill-fill');
+            }, { threshold: 0.2 }); // Se déclenche quand 20% de la section est visible
             
-            // Animation initiale de la barre utilisateur (pas besoin de scroll)
-            animateSkillBar(userBarFill, 1500, 'easeOutExpo');
+            observer.observe(skillsSection);
 
-            slider.addEventListener('input', (event) => {
-                const level = event.target.value;
-                const userPercentageDisplay = userBarFill.querySelector('.skill-percentage');
+            // C. INTERACTIVITÉ (Slider)
+            const slider = document.getElementById('evaluation-slider');
+            const userBar = document.getElementById('user-skill-fill');
+            const userPercent = document.getElementById('user-skill-percentage');
+
+            // Animation initiale de la barre utilisateur
+            animateSkillBar(userBar, 1000);
+
+            slider.addEventListener('input', (e) => {
+                const val = e.target.value;
+                userBar.style.width = `${val}%`;
+                userPercent.textContent = `${val}%`;
                 
-                // Mise à jour directe de la largeur (plus réactif que Anime.js pour le drag)
-                userBarFill.style.width = `${level}%`;
-                userPercentageDisplay.textContent = `${level}%`;
-                
-                // Changement de couleur dynamique (Palette adaptée au thème sombre)
-                let color;
-                if (level < 40) { color = '#ff1744'; } // Rouge vif
-                else if (level < 70) { color = '#ff9100'; } // Orange vif
-                else { color = '#00e676'; } // Vert néon
-                userBarFill.style.backgroundColor = color;
+                // Changement de couleur dynamique
+                if(val < 40) userBar.style.backgroundColor = "#ff375f"; // Rouge
+                else if(val < 75) userBar.style.backgroundColor = "#ff9f0a"; // Orange
+                else userBar.style.backgroundColor = "#32d74b"; // Vert
             });
         });
     </script>
