@@ -7,7 +7,6 @@
     
     <style>
         /* --- DESIGN INSPIRÉ DE FIREFOX NIGHT --- */
-        
         body {
             font-family: 'Segoe UI', Roboto, sans-serif;
             padding: 40px;
@@ -17,6 +16,7 @@
             background-image: radial-gradient(circle at 10% 20%, rgba(118, 59, 219, 0.15) 0%, transparent 20%);
             color: #e0e0e0; 
             line-height: 1.6;
+            min-height: 100vh;
         }
 
         /* LE TITRE STYLE "FIREFOX" */
@@ -126,4 +126,109 @@
         .gallery-controls {
             display: flex;
             justify-content: space-between;
-            margin-top: 20
+            margin-top: 20px;
+        }
+
+        .nav-btn {
+            background-color: #333;
+            color: #fff;
+            border: 1px solid #8a2be2;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: bold;
+        }
+
+        .nav-btn:hover {
+            background-color: #8a2be2;
+            box-shadow: 0 0 10px #8a2be2;
+        }
+
+        /* --- VIDÉO ET INTERACTIVITÉ --- */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin-bottom: 30px;
+            background-color: #000;
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(138, 43, 226, 0.15); 
+            border: 1px solid #333;
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%; border: 0;
+        }
+
+        #user-evaluation-section label {
+            color: #d4bdf5;
+            font-size: 1.2em;
+        }
+
+        input[type=range] {
+            width: 100%;
+            margin: 20px 0;
+            accent-color: #8a2be2; 
+            cursor: pointer;
+        }
+    /* CETTE BALISE EST CRUCIALE, VÉRIFIEZ QU'ELLE EST BIEN LÀ : */
+    </style>
+</head>
+<body>
+    
+    <h1>Mon CV - Projet V5</h1>
+    <p>Version finale intégrant <strong>Galerie Dynamique</strong>, <strong>Scroll Observer</strong> et <strong>Design Firefox Night</strong>.</p>
+    
+    <section id="skills-section">
+        <h2>🎯 Mes Compétences Clés</h2>
+        <div id="skills-container"></div>
+    </section>
+
+    <section id="projects-section">
+        <h2>📚 Mes Projets Universitaires</h2>
+        
+        <div class="gallery-container">
+            <div class="gallery-image-wrapper">
+                <img src="" alt="Projet Image" class="gallery-image" id="gallery-img">
+            </div>
+            
+            <div class="project-info">
+                <h3 id="gallery-title">Chargement...</h3>
+                <p id="gallery-desc">Description...</p>
+            </div>
+
+            <div class="gallery-controls">
+                <button class="nav-btn" id="prev-btn">❮ Précédent</button>
+                <span style="align-self: center; color: #888;" id="gallery-counter">1 / 3</span>
+                <button class="nav-btn" id="next-btn">Suivant ❯</button>
+            </div>
+        </div>
+    </section>
+    
+    <div id="user-evaluation-section">
+        <h2>🗳️ Évaluation de Projet</h2>
+        
+        <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/zASBX3xLYxE" allowfullscreen></iframe>
+        </div>
+        
+        <label for="evaluation-slider">Votre Note (0-100%) :</label>
+        <input type="range" id="evaluation-slider" min="0" max="100" value="50">
+        
+        <div class="skill-item">
+            <span class="skill-label">Note Visiteur (Live)</span>
+            <div class="skill-bar-container">
+                <div class="skill-bar-fill" id="user-skill-fill" data-level="50" style="background-color: #6200ea;">
+                    <span class="skill-percentage" id="user-skill-percentage">50%</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script>
+        // --- A. DONNÉES COMPÉTENCES ---
+        const skillsData = [
+            { name: "Collaboration", level: 90, color: "#bf
