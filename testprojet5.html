@@ -3,23 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mon CV - Projet </title>
+    <title>Mon CV - Projet V5 (Final)</title>
     
     <style>
-        /* --- DESIGN INSPIRÉ DE FIREFOX NIGHT (Identique V4) --- */
+        /* --- DESIGN INSPIRÉ DE FIREFOX NIGHT --- */
+        
         body {
             font-family: 'Segoe UI', Roboto, sans-serif;
             padding: 40px;
+            /* Fond Noir profond */
             background-color: #050505; 
+            /* Légère lueur en arrière-plan */
             background-image: radial-gradient(circle at 10% 20%, rgba(118, 59, 219, 0.15) 0%, transparent 20%);
             color: #e0e0e0; 
             line-height: 1.6;
         }
 
+        /* LE TITRE STYLE "FIREFOX" */
         h1 {
             font-size: 3em;
             font-weight: 800; 
             margin-bottom: 10px;
+            /* Le dégradé Violet -> Bleu -> Cyan */
             background: linear-gradient(90deg, #8a2be2 0%, #4facfe 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent; 
@@ -36,16 +41,52 @@
             font-size: 1.5em;
         }
 
-        p { font-size: 1.1em; color: #b0b0b0; }
+        p {
+            font-size: 1.1em;
+            color: #b0b0b0;
+        }
         
         /* --- BARRES DE COMPÉTENCES --- */
-        .skill-item { margin-bottom: 30px; }
-        .skill-label { font-weight: bold; margin-bottom: 8px; display: block; color: #ffffff; font-size: 1.1em; }
-        .skill-bar-container { background-color: #1a1a1a; border-radius: 8px; height: 24px; overflow: hidden; border: 1px solid #333; }
-        .skill-bar-fill { height: 100%; width: 0; border-radius: 8px; display: flex; align-items: center; justify-content: flex-end; padding-right: 10px; background-image: linear-gradient(90deg, rgba(255,255,255,0.1), transparent); }
-        .skill-percentage { color: #fff; font-size: 13px; font-weight: bold; text-shadow: 0 1px 3px rgba(0,0,0,0.8); }
+        .skill-item { 
+            margin-bottom: 30px; 
+        }
+        
+        .skill-label { 
+            font-weight: bold; 
+            margin-bottom: 8px; 
+            display: block; 
+            color: #ffffff; 
+            font-size: 1.1em;
+        }
+        
+        .skill-bar-container { 
+            background-color: #1a1a1a; 
+            border-radius: 8px; 
+            height: 24px; 
+            overflow: hidden; 
+            border: 1px solid #333; 
+        }
+        
+        .skill-bar-fill { 
+            height: 100%; 
+            width: 0; /* DÉPART À 0% POUR LE SCROLL */
+            border-radius: 8px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: flex-end; 
+            padding-right: 10px;
+            /* Dégradé sur la barre */
+            background-image: linear-gradient(90deg, rgba(255,255,255,0.1), transparent);
+        }
+        
+        .skill-percentage { 
+            color: #fff; 
+            font-size: 13px; 
+            font-weight: bold;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+        }
 
-        /* --- NOUVEAU : GALERIE DE PROJETS (CARROUSEL) --- */
+        /* --- GALERIE DE PROJETS (CARROUSEL) --- */
         .gallery-container {
             position: relative;
             background-color: #1a1a1a;
@@ -54,12 +95,12 @@
             padding: 20px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             max-width: 800px;
-            margin: 0 auto; /* Centré */
+            margin: 0 auto;
         }
 
         .gallery-image-wrapper {
             width: 100%;
-            height: 400px; /* Hauteur fixe pour uniformité */
+            height: 400px; /* Hauteur fixe */
             overflow: hidden;
             border-radius: 8px;
             margin-bottom: 20px;
@@ -72,8 +113,8 @@
         .gallery-image {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* L'image couvre tout sans être déformée */
-            transition: transform 0.3s ease;
+            object-fit: cover; /* Remplit le cadre proprement */
+            transition: opacity 0.3s ease;
         }
 
         .project-info h3 {
@@ -85,217 +126,4 @@
         .gallery-controls {
             display: flex;
             justify-content: space-between;
-            margin-top: 20px;
-        }
-
-        .nav-btn {
-            background-color: #333;
-            color: #fff;
-            border: 1px solid #8a2be2;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: all 0.2s;
-            font-weight: bold;
-        }
-
-        .nav-btn:hover {
-            background-color: #8a2be2;
-            box-shadow: 0 0 10px #8a2be2;
-        }
-
-        /* --- INTERACTIVITÉ --- */
-        .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; margin-bottom: 30px; background-color: #000; border-radius: 12px; box-shadow: 0 0 20px rgba(138, 43, 226, 0.15); border: 1px solid #333; }
-        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
-        #user-evaluation-section label { color: #d4bdf5; font-size: 1.2em; }
-        input[type=range] { width: 100%; margin: 20px 0; accent-color: #8a2be2; cursor: pointer; }
-    </style>
-</head>
-<body>
-    
-    <h1>Mon CV - Projet V5</h1>
-    <p>Intégration d'une <strong>Galerie de Projets Dynamique</strong> (Tableau d'objets JS).</p>
-    
-    <section id="skills-section">
-        <h2> Mes Compétences Clés</h2>
-        <div id="skills-container"></div>
-    </section>
-
-    <section id="projects-section">
-        <h2> Mes Projets Universitaires</h2>
-        
-        <div class="gallery-container">
-            <div class="gallery-image-wrapper">
-                <img src="" alt="Projet Image" class="gallery-image" id="gallery-img">
-            </div>
-            
-            <div class="project-info">
-                <h3 id="gallery-title">Titre du Projet</h3>
-                <p id="gallery-desc">Description du projet...</p>
-            </div>
-
-            <div class="gallery-controls">
-                <button class="nav-btn" id="prev-btn">❮ Précédent</button>
-                <span style="align-self: center; color: #666;" id="gallery-counter">1 / 3</span>
-                <button class="nav-btn" id="next-btn">Suivant ❯</button>
-            </div>
-        </div>
-    </section>
-    
-    <div id="user-evaluation-section">
-        <h2>🗳️ Évaluation de Projet</h2>
-        <div class="video-container">
-            <iframe src="https://www.youtube.com/embed/zASBX3xLYxE" allowfullscreen></iframe>
-        </div>
-        <label for="evaluation-slider">Votre Note (0-100%) :</label>
-        <input type="range" id="evaluation-slider" min="0" max="100" value="50">
-        <div class="skill-item">
-            <span class="skill-label">Note Visiteur (Live)</span>
-            <div class="skill-bar-container">
-                <div class="skill-bar-fill" id="user-skill-fill" data-level="50" style="background-color: #6200ea;">
-                    <span class="skill-percentage" id="user-skill-percentage">50%</span>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
-    <script>
-        // --- A. DONNÉES COMPÉTENCES ---
-        const skillsData = [
-            { name: "Collaboration", level: 90, color: "#bf5af2" },
-            { name: "Adaptabilité", level: 85, color: "#0a84ff" },
-            { name: "Rigueur", level: 75, color: "#32d74b" },
-            { name: "Créativité", level: 80, color: "#ff375f" }
-        ];
-
-        // --- B. DONNÉES PROJETS (TABLEAU D'IMAGES / OBJETS) ---
-        // C'est ici que tu mettras les vrais noms de tes images plus tard
-        const projectsData = [
-            {
-                title: "Fin de la modération sur Meta",
-                desc: "Analyse des réactions contrastées du public et des annonceurs face aux changements de politique de modération.",
-                image: "https://via.placeholder.com/800x400/222/fff?text=Capture+Projet+Meta" // Remplace par "projet_meta.jpg"
-            },
-            {
-                title: "Enjeux de l'Intelligence Artificielle",
-                desc: "Travail de groupe traitant des aspects éthiques, politiques, géopolitiques et philosophiques (transhumanisme).",
-                image: "https://via.placeholder.com/800x400/222/fff?text=Capture+Projet+IA" // Remplace par "projet_ia.jpg"
-            },
-            {
-                title: "Traitement Médiatique du Conflit",
-                desc: "Étude du traitement du conflit israélo-palestinien sur les chaînes d’information continue ces derniers mois.",
-                image: "https://via.placeholder.com/800x400/222/fff?text=Capture+Projet+Media" // Remplace par "projet_media.jpg"
-            }
-        ];
-
-        // --- C. LOGIQUES ---
-        function createSkillBarElement(skill) {
-            const item = document.createElement('div');
-            item.className = 'skill-item';
-            item.innerHTML = `
-                <span class="skill-label">${skill.name}</span>
-                <div class="skill-bar-container">
-                    <div class="skill-bar-fill" data-level="${skill.level}" style="background-color: ${skill.color}; width: 0%;">
-                        <span class="skill-percentage">0%</span>
-                    </div>
-                </div>`;
-            return item.querySelector('.skill-bar-fill');
-        }
-
-        function animateSkillBar(barElement, duration = 2000) {
-            const targetLevel = barElement.getAttribute('data-level');
-            const percentageDisplay = barElement.querySelector('.skill-percentage');
-            anime({
-                targets: barElement, width: `${targetLevel}%`, duration: duration, easing: 'spring(1, 80, 10, 0)',
-                update: function(anim) {
-                    const value = Math.round(anim.progress * parseInt(targetLevel, 10) / 100);
-                    percentageDisplay.textContent = `${value}%`;
-                }
-            });
-        }
-
-        // --- D. LOGIQUE GALERIE (ALGORITHMIQUE) ---
-        let currentProjectIndex = 0; // État initial (Projet 1)
-
-        function updateGallery() {
-            const project = projectsData[currentProjectIndex];
-            
-            // Ciblage des éléments
-            const imgEl = document.getElementById('gallery-img');
-            const titleEl = document.getElementById('gallery-title');
-            const descEl = document.getElementById('gallery-desc');
-            const counterEl = document.getElementById('gallery-counter');
-
-            // Animation de transition (Fade Out / In)
-            imgEl.style.opacity = 0;
-            
-            setTimeout(() => {
-                // Mise à jour des données (DOM)
-                imgEl.src = project.image;
-                titleEl.textContent = project.title;
-                descEl.textContent = project.desc;
-                counterEl.textContent = `${currentProjectIndex + 1} / ${projectsData.length}`;
-                
-                // Réapparition
-                imgEl.style.opacity = 1;
-            }, 200); // Attend 200ms que l'image soit invisible pour changer
-        }
-
-        // --- E. EXECUTION PRINCIPALE ---
-        document.addEventListener('DOMContentLoaded', () => {
-            // 1. Génération Compétences
-            const skillsContainer = document.getElementById('skills-container');
-            const skillsSection = document.getElementById('skills-section');
-            const barsToAnimate = [];
-
-            skillsData.forEach(skill => {
-                const bar = createSkillBarElement(skill);
-                skillsContainer.appendChild(bar.closest('.skill-item'));
-                barsToAnimate.push(bar);
-            });
-
-            // 2. Scroll Observer
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        barsToAnimate.forEach(bar => animateSkillBar(bar));
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.2 });
-            observer.observe(skillsSection);
-
-            // 3. Initialisation Galerie
-            updateGallery(); // Affiche le premier projet au chargement
-
-            // Écouteurs d'événements pour les boutons
-            document.getElementById('next-btn').addEventListener('click', () => {
-                currentProjectIndex++;
-                if (currentProjectIndex >= projectsData.length) currentProjectIndex = 0; // Boucle au début
-                updateGallery();
-            });
-
-            document.getElementById('prev-btn').addEventListener('click', () => {
-                currentProjectIndex--;
-                if (currentProjectIndex < 0) currentProjectIndex = projectsData.length - 1; // Boucle à la fin
-                updateGallery();
-            });
-
-            // 4. Slider Evaluation
-            const slider = document.getElementById('evaluation-slider');
-            const userBar = document.getElementById('user-skill-fill');
-            const userPercent = document.getElementById('user-skill-percentage');
-            animateSkillBar(userBar, 1000);
-            slider.addEventListener('input', (e) => {
-                const val = e.target.value;
-                userBar.style.width = `${val}%`;
-                userPercent.textContent = `${val}%`;
-                if(val < 40) userBar.style.backgroundColor = "#ff375f";
-                else if(val < 75) userBar.style.backgroundColor = "#ff9f0a";
-                else userBar.style.backgroundColor = "#32d74b";
-            });
-        });
-    </script>
-</body>
-</html>
+            margin-top: 20
