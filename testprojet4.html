@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mon CV - Projet </title>
+    <title>Mon CV - Projet V4 (Design Firefox & Scroll)</title>
     
     <style>
         /* --- DESIGN INSPIRÉ DE FIREFOX NIGHT --- */
@@ -11,29 +11,29 @@
         body {
             font-family: 'Segoe UI', Roboto, sans-serif;
             padding: 40px;
-            /* Fond Noir profond demandé */
+            /* Fond Noir profond */
             background-color: #050505; 
-            /* Légère lueur en arrière-plan pour la profondeur */
+            /* Légère lueur en arrière-plan */
             background-image: radial-gradient(circle at 10% 20%, rgba(118, 59, 219, 0.15) 0%, transparent 20%);
-            color: #e0e0e0; /* Texte gris clair pour la lisibilité sur noir */
+            color: #e0e0e0; 
             line-height: 1.6;
         }
 
-        /* LE TITRE STYLE "FIREFOX" (Dégradé de couleurs sur le texte) */
+        /* LE TITRE STYLE "FIREFOX" */
         h1 {
             font-size: 3em;
-            font-weight: 800; /* Très gras */
+            font-weight: 800; 
             margin-bottom: 10px;
-            /* Le dégradé magique : Violet -> Bleu -> Cyan */
+            /* Le dégradé Violet -> Bleu -> Cyan */
             background: linear-gradient(90deg, #8a2be2 0%, #4facfe 100%);
             -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent; /* Rend le texte transparent pour voir le fond */
+            -webkit-text-fill-color: transparent; 
             display: inline-block;
         }
 
         h2 {
-            color: #d4bdf5; /* Violet très clair */
-            border-bottom: 2px solid #6200ea; /* Soulignement violet électrique */
+            color: #d4bdf5; 
+            border-bottom: 2px solid #6200ea; 
             padding-bottom: 10px;
             margin-top: 50px;
             text-transform: uppercase;
@@ -60,12 +60,11 @@
         }
         
         .skill-bar-container { 
-            /* Fond gris très foncé pour contraster avec le noir */
             background-color: #1a1a1a; 
             border-radius: 8px; 
             height: 24px; 
             overflow: hidden; 
-            border: 1px solid #333; /* Fine bordure subtile */
+            border: 1px solid #333; 
         }
         
         .skill-bar-fill { 
@@ -76,7 +75,7 @@
             align-items: center; 
             justify-content: flex-end; 
             padding-right: 10px;
-            /* Dégradé sur la barre elle-même pour l'effet "Néon" */
+            /* Dégradé sur la barre */
             background-image: linear-gradient(90deg, rgba(255,255,255,0.1), transparent);
         }
         
@@ -96,7 +95,7 @@
             margin-bottom: 30px;
             background-color: #000;
             border-radius: 12px;
-            box-shadow: 0 0 20px rgba(138, 43, 226, 0.15); /* Ombre violette */
+            box-shadow: 0 0 20px rgba(138, 43, 226, 0.15); 
             border: 1px solid #333;
         }
         .video-container iframe {
@@ -109,11 +108,10 @@
             font-size: 1.2em;
         }
 
-        /* Personnalisation du slider (Range Input) */
         input[type=range] {
             width: 100%;
             margin: 20px 0;
-            accent-color: #8a2be2; /* Couleur du curseur violet */
+            accent-color: #8a2be2; 
             cursor: pointer;
         }
     </style>
@@ -124,12 +122,12 @@
     <p>Design inspiré de l'univers <strong>Firefox Night</strong> : Fond noir et dégradés violets.</p>
     
     <section id="skills-section">
-        <h2> Mes Compétences Clés</h2>
+        <h2>🎯 Mes Compétences Clés</h2>
         <div id="skills-container"></div>
     </section>
     
     <div id="user-evaluation-section">
-        <h2> Évaluation de Projet</h2>
+        <h2>🗳️ Évaluation de Projet</h2>
         
         <div class="video-container">
             <iframe src="https://www.youtube.com/embed/zASBX3xLYxE" allowfullscreen></iframe>
@@ -150,12 +148,12 @@
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
     <script>
-        // 1. DONNÉES (Couleurs adaptées au thème noir/violet)
+        // 1. DONNÉES MISES À JOUR (Vos nouveaux pourcentages)
         const skillsData = [
-            { name: "Collaboration", level: 85, color: "#bf5af2" }, // Violet clair
-            { name: "Adaptabilité", level: 70, color: "#0a84ff" },  // Bleu Firefox
-            { name: "Rigueur", level: 90, color: "#32d74b" },      // Vert néon (contraste)
-            { name: "Créativité", level: 65, color: "#ff375f" }     // Rose/Rouge néon
+            { name: "Collaboration", level: 90, color: "#bf5af2" }, // Violet clair
+            { name: "Adaptabilité", level: 85, color: "#0a84ff" },  // Bleu Firefox
+            { name: "Rigueur", level: 75, color: "#32d74b" },      // Vert néon
+            { name: "Créativité", level: 80, color: "#ff375f" }     // Rose néon
         ];
 
         // 2. GÉNÉRATION ALGORITHMIQUE
@@ -163,7 +161,6 @@
             const item = document.createElement('div');
             item.className = 'skill-item';
             
-            // Création manuelle du HTML via JS (Algorithmique)
             item.innerHTML = `
                 <span class="skill-label">${skill.name}</span>
                 <div class="skill-bar-container">
@@ -175,7 +172,7 @@
             return item.querySelector('.skill-bar-fill');
         }
 
-        // 3. FONCTION D'ANIMATION (Réutilisable)
+        // 3. FONCTION D'ANIMATION
         function animateSkillBar(barElement, duration = 2000) {
             const targetLevel = barElement.getAttribute('data-level');
             const percentageDisplay = barElement.querySelector('.skill-percentage');
@@ -184,7 +181,7 @@
                 targets: barElement,
                 width: `${targetLevel}%`,
                 duration: duration,
-                easing: 'spring(1, 80, 10, 0)', // Effet rebond dynamique
+                easing: 'spring(1, 80, 10, 0)',
                 update: function(anim) {
                     const value = Math.round(anim.progress * parseInt(targetLevel, 10) / 100);
                     percentageDisplay.textContent = `${value}%`;
@@ -198,32 +195,30 @@
             const skillsSection = document.getElementById('skills-section');
             const barsToAnimate = [];
 
-            // A. Boucle de génération
+            // A. Génération
             skillsData.forEach(skill => {
                 const bar = createSkillBarElement(skill);
                 skillsContainer.appendChild(bar.closest('.skill-item'));
                 barsToAnimate.push(bar);
             });
 
-            // B. INTERSECTION OBSERVER (Déclenchement au Scroll)
+            // B. Scroll Observer
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        // Lancer l'animation uniquement quand visible
                         barsToAnimate.forEach(bar => animateSkillBar(bar));
-                        observer.unobserve(entry.target); // Arrêter d'observer
+                        observer.unobserve(entry.target);
                     }
                 });
-            }, { threshold: 0.2 }); // Se déclenche quand 20% de la section est visible
+            }, { threshold: 0.2 });
             
             observer.observe(skillsSection);
 
-            // C. INTERACTIVITÉ (Slider)
+            // C. Interactivité Slider
             const slider = document.getElementById('evaluation-slider');
             const userBar = document.getElementById('user-skill-fill');
             const userPercent = document.getElementById('user-skill-percentage');
 
-            // Animation initiale de la barre utilisateur
             animateSkillBar(userBar, 1000);
 
             slider.addEventListener('input', (e) => {
@@ -231,10 +226,9 @@
                 userBar.style.width = `${val}%`;
                 userPercent.textContent = `${val}%`;
                 
-                // Changement de couleur dynamique
-                if(val < 40) userBar.style.backgroundColor = "#ff375f"; // Rouge
-                else if(val < 75) userBar.style.backgroundColor = "#ff9f0a"; // Orange
-                else userBar.style.backgroundColor = "#32d74b"; // Vert
+                if(val < 40) userBar.style.backgroundColor = "#ff375f";
+                else if(val < 75) userBar.style.backgroundColor = "#ff9f0a";
+                else userBar.style.backgroundColor = "#32d74b";
             });
         });
     </script>
