@@ -45,22 +45,9 @@ Evolution du projet, documentée étape par étape avec les interactions IA (Mod
     > "Je souhaite implémenter une animation de barre de progression avec la bibliothèque Anime.js. 
 * **Analyse de la solution :** L'IA a proposé un script utilisant `document.querySelectorAll` pour cibler les barres, puis une boucle `anime()` basique. J'ai compris comment la propriété CSS est manipulée par le moteur d'animation.
 
-###  Version 2 : Refonte du Design (UI/UX)
-**Fichier :** [testprojet1.html](https://nali-333.github.io/cv/testprojet1.html)
-* **Objectif :** Améliorer l'esthétique pour un rendu professionnel (Dark Mode, contrastes) correspondant à ma charte graphique.
-* **Prompt Technique utilisé :**
-    > "Le rendu actuel est trop basique. Je souhaite moderniser l'interface avec un thème sombre. Pourriez-vous proposer un CSS utilisant des contrastes forts et des couleurs   pour chaque compétence ?"
 
 
-###  Version 3 : Approche Algorithmique & Interactivité 
-**Fichier :** [testprojet3.html](https://nali-333.github.io/cv/testprojet3.html)
-* **Objectif Majeur :** Refactoriser le code pour respecter les principes du cours et ajouter une interaction utilisateur.
-* **Prompt Technique utilisé :**
-    > "Mon code actuel déclare les barres 'en dur' dans le HTML,  Je souhaite **générer le DOM de manière algorithmique**  De plus, comment puis-je ajouter une barre d'évaluation  pour interagir avec Anime.js en temps réel ?"
-* **Solution Implémentée :**
-    1.  **Structure de données :** Création d'un tableau d'objets `skillsData` (séparation fond/forme).
-    2.  **Génération DOM :** Utilisation d'une boucle `forEach` couplée à `document.createElement` pour injecter les éléments dynamiquement.
-    3.  **Event Listener :** Ajout d'une écoute sur l'événement `input` du slider pour mettre à jour la largeur et la couleur de la barre instantanément.
+
 
 
 
