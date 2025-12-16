@@ -17,7 +17,7 @@
 
 ## Réalisation
 
-**1. Structuration des données (Fait main)**
+**1. Structuration des données **
 Après avoir lu la documentation sur les tableaux en JavaScript, j'ai décidé de ne plus écrire mes compétences "en dur" dans le HTML, mais de créer une structure de données flexible dans le script. J'ai écrit moi-même le tableau d'objets pour pouvoir modifier mes pourcentages facilement :
 
 ```javascript
