@@ -1,25 +1,26 @@
-# Conception  - testprojet3.html (Animation Library)
+# Conception  - testprojet3.html (Intégration Multimédia)
 
 ## Objectifs
-* Découvrir et intégrer une librairie externe (Anime.js).
-* Animer les éléments du DOM (titres, barres de compétences) au chargement.
-* Comprendre la syntaxe des objets en JS (targets, easing, duration).
+* Enrichir le site avec du contenu externe (Vidéo).
+* Comprendre et utiliser la balise HTML `<iframe>`.
+* Adapter la mise en page pour intégrer un lecteur média.
 
 ## Outils
 * VS Code
-* Gemini
-* Librairie Anime.js (CDN)
+* YouTube (Fonction "Partager" > "Intégrer")
+* Navigateur
 
 ## Sources
-* [Documentation Anime.js](https://animejs.com/documentation/)
+* [MDN Web Docs - Élément Iframe](https://developer.mozilla.org/fr/docs/Web/HTML/Element/iframe)
+* [Support Google - Intégrer des vidéos](https://support.google.com/youtube/answer/171780)
 
 ## Réalisation
 
-**1. Importation de la librairie**
-J'ai appris à relier une librairie externe en ajoutant la balise `<script src="...">` pointant vers le CDN d'Anime.js dans mon fichier HTML.
+**1. Récupération du code d'intégration (Source Externe)**
+Je suis allé sur ma vidéo YouTube, j'ai cliqué sur "Partager" puis "Intégrer". YouTube m'a fourni un bloc de code HTML prêt à l'emploi commençant par `<iframe...`.
 
-**2. Animation d'entrée (Code + Tuto)**
-Au lieu d'utiliser des transitions CSS classiques, j'ai écrit un script JS utilisant `anime({...})`. J'ai ciblé les éléments (comme `.skill-fill` ou les titres) pour les faire apparaître progressivement (translation + opacité).
+**2. Intégration dans le HTML **
+J'ai copié ce code dans ma page `testprojet3.html`, à l'endroit désiré (sous les compétences). J'ai découvert que la balise `<iframe>` permet d'ouvrir une "fenêtre" vers un autre site à l'intérieur du mien.
 
-**3. Configuration des délais (Staggering)**
-J'ai utilisé la propriété `delay: anime.stagger(100)` pour que les éléments n'apparaissent pas tous en même temps, mais en cascade, ce qui donne un effet plus professionnel.
+**3. Ajustement des dimensions (CSS/HTML)**
+Pour que la vidéo ne soit ni trop petite ni trop grande, j'ai modifié les attributs `width` (largeur) et `height` (hauteur) directement dans la balise ou via le CSS, afin qu'elle s'aligne correctement avec le reste de mon design.
