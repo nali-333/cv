@@ -1,4 +1,4 @@
-# Conception  - testprojet6.html (UI Tactile & Optimisation)
+# Conception - testprojet6.html (UI Tactile & Optimisation)
 
 ## Objectifs
 * Améliorer l'ergonomie suite aux retours pédagogiques (Professeur).
@@ -30,27 +30,27 @@ J'ai remplacé le bloc HTML de l'ancien slider par le code généré (une `div` 
 
 ```mermaid
 flowchart TD
-  A[Debut : Chargement Portfolio] --> B[Initialisation DOM + CSS]
-  B --> C[Animation d'entree Anime.js]
+  A["Debut : Chargement Portfolio"] --> B["Initialisation DOM + CSS"]
+  B --> C["Animation d'entree Anime.js"]
   
-  C --> D{Action Utilisateur}
+  C --> D{"Action Utilisateur"}
 
   %% Branche 1 : Le Scroll
-  D -- Scroll --> E[Detection Defilement]
-  E --> F{Position > 50px ?}
-  F -- Oui --> G[Navbar : Mode Opacity/Blur]
-  F -- Non --> H[Navbar : Mode Transparent]
-  E --> I[Intersection Observer : Animation des sections]
+  D -- Scroll --> E["Detection Defilement"]
+  E --> F{"Position > 50px ?"}
+  F -- Oui --> G["Navbar : Mode Opacity/Blur"]
+  F -- Non --> H["Navbar : Mode Transparent"]
+  E --> I["Intersection Observer : Animation des sections"]
 
   %% Branche 2 : La Galerie Projet 5
-  D -- Clic Boutons Galerie --> J[Changement Index Projet]
-  J --> K[Recuperation Donnes JS]
-  K --> L[Mise à jour Image + Texte]
+  D -- "Clic Boutons Galerie" --> J["Changement Index Projet"]
+  J --> K["Recuperation Donnes JS"]
+  K --> L["Mise à jour Image + Texte"]
   L --> D
 
   %% Branche 3 : La Barre Tactile Projet 6
-  D -- Clic / Glisser Jauge --> M[Event Mousedown / Move]
-  M --> N[Calcul Position X Souris]
-  N --> O[Conversion en %]
-  O --> P[Mise a jour Largeur Barre + Texte]
+  D -- "Clic / Glisser Jauge" --> M["Event Mousedown / Move"]
+  M --> N["Calcul Position X Souris"]
+  N --> O["Conversion en %"]
+  O --> P["Mise a jour Largeur Barre + Texte"]
   P --> D
