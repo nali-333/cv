@@ -1,28 +1,25 @@
-# Conception - testprojet2.html (Version Dynamique & Librairie)
+# Conception  - testprojet2.html (Interactivité Utilisateur)
 
 ## Objectifs
-* Passer d'un code HTML statique à une génération dynamique (Algorithmique).
-* Séparer les données (Data) de l'affichage (DOM).
-* Intégrer une librairie externe d'animation (**Anime.js**).
+* Ajouter une dimension participative au site (User Input).
+* Manipuler le DOM en temps réel (récupérer la valeur du slider).
+* Créer une logique conditionnelle visuelle (changement de couleur).
 
 ## Outils
 * VS Code
-* Gemini (Modèle Pro)
-* Documentation Anime.js
+* Gemini
+* Navigateur (Inspecteur)
 
 ## Sources
-* [Documentation officielle Anime.js](https://animejs.com/documentation/)
-* [MDN Web Docs - Array.prototype.forEach()](https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach) (Pour comprendre comment parcourir mes données)
-
+* [MDN Web Docs - L'élément Input Range](https://developer.mozilla.org/fr/docs/Web/HTML/Element/input/range)
 
 ## Réalisation
 
-**1. Structuration des données **
-Après avoir lu la documentation sur les tableaux en JavaScript, j'ai décidé de ne plus écrire mes compétences "en dur" dans le HTML, mais de créer une structure de données flexible dans le script. J'ai écrit moi-même le tableau d'objets pour pouvoir modifier mes pourcentages facilement :
+**1. Création de l'interface **
+J'ai ajouté la balise `<input type="range">` dans le HTML pour créer la barre de notation, en fixant les attributs `min="0"` et `max="100"`.
 
-```javascript
-const skillsData = [
-    { name: "Collaboration", level: 90, color: "#bf5af2" },
-    { name: "Adaptabilité", level: 85, color: "#0a84ff" },
-    // ...
-];
+**2. Écoute de l'événement (JavaScript)**
+J'ai utilisé `addEventListener('input', ...)` pour détecter le mouvement du curseur. Cela permet de mettre à jour le pourcentage affiché en temps réel sans recharger la page.
+
+**3. Logique conditionnelle (Prompt Gemini)**
+Pour rendre l'interface vivante, j'ai demandé à l'IA une structure `if/else` qui change la couleur de la barre selon la note (Rouge < 40%, Orange < 75%, Vert > 75%).
