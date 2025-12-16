@@ -1,4 +1,4 @@
-# Conception 16/12/2025 - testprojet6.html (UI Tactile & Optimisation)
+# Conception  - testprojet6.html (UI Tactile & Optimisation)
 
 ## Objectifs
 * Améliorer l'ergonomie suite aux retours pédagogiques (Professeur).
