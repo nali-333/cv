@@ -1,4 +1,4 @@
-# Conception [Date] - testprojet2.html (Version Dynamique & Librairie)
+# Conception - testprojet2.html (Version Dynamique & Librairie)
 
 ## Objectifs
 * Passer d'un code HTML statique à une génération dynamique (Algorithmique).
