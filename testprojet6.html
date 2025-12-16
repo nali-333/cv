@@ -261,4 +261,124 @@
             const counterEl = document.getElementById('gallery-counter');
 
             if(imgEl) {
-                imgEl.style.
+                imgEl.style.opacity = 0;
+                setTimeout(() => {
+                    // On met une image par défaut si le chemin est vide pour éviter l'icône cassée
+                    imgEl.src = project.image || 'https://via.placeholder.com/800x400?text=Image+Non+Trouvée'; 
+                    titleEl.textContent = project.title;
+                    descEl.textContent = project.desc;
+                    counterEl.textContent = `${currentProjectIndex + 1} / ${projectsData.length}`;
+                    imgEl.style.opacity = 1;
+                }, 200);
+            }
+        }
+
+        // --- C. DÉMARRAGE DU SCRIPT ---
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // 1. Initialisation des Compétences
+            const skillsContainer = document.getElementById('skills-container');
+            const skillsSection = document.getElementById('skills-section');
+            const barsToAnimate = [];
+
+            if (skillsContainer) {
+                skillsData.forEach(skill => {
+                    const bar = createSkillBarElement(skill);
+                    skillsContainer.appendChild(bar.closest('.skill-item'));
+                    barsToAnimate.push(bar);
+                });
+            }
+
+            // 2. Initialisation de la Galerie
+            updateGallery();
+            
+            const nextBtn = document.getElementById('next-btn');
+            const prevBtn = document.getElementById('prev-btn');
+
+            if(nextBtn) nextBtn.addEventListener('click', () => {
+                currentProjectIndex++;
+                if (currentProjectIndex >= projectsData.length) currentProjectIndex = 0;
+                updateGallery();
+            });
+
+            if(prevBtn) prevBtn.addEventListener('click', () => {
+                currentProjectIndex--;
+                if (currentProjectIndex < 0) currentProjectIndex = projectsData.length - 1;
+                updateGallery();
+            });
+
+            // 3. Observer pour l'animation des barres au scroll
+            if ('IntersectionObserver' in window && skillsSection) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            barsToAnimate.forEach(bar => animateSkillBar(bar));
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.2 });
+                observer.observe(skillsSection);
+            } else {
+                barsToAnimate.forEach(bar => animateSkillBar(bar));
+            }
+
+            // --- 4. LOGIQUE BARRE TACTILE (CORRIGÉE) ---
+            const barContainer = document.getElementById('interactive-bar');
+            const barFill = document.getElementById('bar-fill');
+            const barText = document.getElementById('bar-text');
+            let isDragging = false;
+
+            // Fonction pour calculer le pourcentage selon la souris
+            function updateBar(clientX) {
+                const rect = barContainer.getBoundingClientRect();
+                let x = clientX - rect.left;
+
+                // Bloquer entre 0 et la largeur max
+                if (x < 0) x = 0;
+                if (x > rect.width) x = rect.width;
+
+                const percentage = Math.round((x / rect.width) * 100);
+
+                // Mise à jour visuelle
+                barFill.style.width = percentage + '%';
+                barText.textContent = percentage + '%';
+            }
+
+            // Événements souris
+            barContainer.addEventListener('mousedown', (e) => {
+                isDragging = true;
+                updateBar(e.clientX);
+            });
+
+            window.addEventListener('mousemove', (e) => {
+                if (isDragging) {
+                    e.preventDefault(); // Empêche la sélection de texte
+                    updateBar(e.clientX);
+                }
+            });
+
+            window.addEventListener('mouseup', () => {
+                isDragging = false;
+            });
+
+            // Support Touch (pour mobile/tablette)
+            barContainer.addEventListener('touchstart', (e) => {
+                isDragging = true;
+                updateBar(e.touches[0].clientX);
+            }, {passive: false});
+
+            window.addEventListener('touchmove', (e) => {
+                if (isDragging) {
+                    // e.preventDefault(); // Optionnel : empêche le scroll de la page pendant qu'on règle
+                    updateBar(e.touches[0].clientX);
+                }
+            }, {passive: false});
+            
+            window.addEventListener('touchend', () => {
+                isDragging = false;
+            });
+
+        });
+    </script>
+</body>
+</html>
